@@ -12,9 +12,12 @@ import matplotlib.pyplot as plt
 def read_file(file_name):
     """
     Takes a filename as a parameter
-    reads from said file and returns two dataframes:
+    reads from said file and creates two dataframes:
     -df having empty data removed and unnecessary colums removed
     -countries_df being a transposed version of df
+    returns the two dataframes, in order:
+    -countries_df
+    -df
     """
     #converted WB file from xls to xlsx in order to avoid
     #xlrd module conflict
@@ -143,10 +146,12 @@ if __name__ == "__main__":
     #obtaining CO2/capita emissions data
     co2_df, co2_val_df = read_file("WB CO2 Emissions mT Per Capita.xlsx")
     
+    
     #Selecting the countries to create the line graph with
     countries = ["United Kingdom","Germany","Romania","Bulgaria",
                  "Ghana","Nigeria"]
-    line_graph(countries,co2_df,["Year","CO2 Emissions (Metric Tons) Per Capita"])
+    line_graph(countries,co2_df,["Year",
+                                 "CO2 Emissions (Metric Tons) Per Capita"])
     
     #obtaining access to electricity data
     countries_df,values_df = read_file("WB Access to Electricity.xlsx")
@@ -155,10 +160,10 @@ if __name__ == "__main__":
     #obtaining GDP/capita data
     gdp_df, gdp_val_df = read_file("WB GDP Per Capita.xlsx")
     
-    line_graph(countries,gdp_df,["Year","GDP Per Capita.xlsx"])
+    line_graph(countries,gdp_df,["Year","GDP Per Capita"])
     #obtaining KWh Electricity used/capita data
-    electric_df, electric_val_df = read_file("WB KWh Electricity Used Per Capita.xlsx")
-    #obtaining Population Growth (%) data
+    electric_df, electric_val_df = read_file("WB KWh Electric Per Capita.xlsx")
+    #obtaining Population Growth (%) data 
     pop_growth_df, pop_growth_val_df = read_file("WB Population Growth.xlsx")
     
     #creating heatmaps for the Japan and the UK
@@ -176,7 +181,7 @@ if __name__ == "__main__":
                  "Bulgaria","Romania","Thailand","Ghana",
                  "Nigeria","Pakistan"]
     #creating bar charts for the selected countries
-    bar_chart(countries, gdp_df,[2000,2020],["Year","GDP Per Capita"])
+    bar_chart(countries,gdp_df,[2000,2020],["Year","GDP Per Capita"])
     bar_chart(countries,mortality_df,[2000,2020],
               ["Year","Mortality Rate Under 5 (per 1000)"])
     
